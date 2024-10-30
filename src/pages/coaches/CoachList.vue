@@ -1,7 +1,13 @@
 <template>
     <div>
-        <h1>Coach List</h1>
+        <div>
+            <h1>FILTER</h1>
+        </div>
+        <div>
+            <h1>LIST OF COACHES</h1>
+        </div>
     </div>
+    
 </template>
 
 <script>
