@@ -20,7 +20,6 @@
                 </ul>
                 <h3 v-else>No coaches found.</h3>
             </base-card>
-            
         </div>
     </div>
     
