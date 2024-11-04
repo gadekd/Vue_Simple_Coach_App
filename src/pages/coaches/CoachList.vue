@@ -4,23 +4,37 @@
             <h1>FILTER</h1>
         </div>
         <div>
-            <div class="controls">
-                <button>Refresh</button>
-                <router-link to="/register">Register as Coach</router-link>
-            </div>
-            <ul v-if="hasCoaches">
-                <li v-for="coach in filteredCoaches" :key="coach.id">
-                    {{ coach.firstName }}
-                </li>
-            </ul>
-            <h3 v-else>No coaches found.</h3>
+            <base-card>
+                <div class="controls">
+                    <base-button mode="outline">Refresh</base-button>
+                    <base-button link to="/register">Register as Coach</base-button>
+                </div>
+                <ul v-if="hasCoaches">
+                    <coach-item v-for="coach in filteredCoaches" 
+                        :key="coach.id" 
+                        :id="coach.id"
+                        :first-name="coach.firstName"
+                        :last-name="coach.lastName"
+                        :rate="coach.hourlyRate"
+                        :areas="coach.areas"></coach-item>
+                </ul>
+                <h3 v-else>No coaches found.</h3>
+            </base-card>
+            
         </div>
     </div>
     
 </template>
 
 <script>
+import CoachItem from '../../components/coaches/CoachItem.vue';
+import BaseCard from '../../components/ui/BaseCard.vue';
+
 export default {
+    components: {
+        CoachItem,
+        BaseCard
+    },
     computed: {
         filteredCoaches() {
             return this.$store.getters['coaches/coaches'];
@@ -33,5 +47,14 @@ export default {
 </script>
 
 <style scoped>
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
